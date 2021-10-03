@@ -1,0 +1,79 @@
+{
+  "id": 1, 
+  "userId": 1,
+  "name": "Xarthas",
+  "race": "Tiefling",
+  "class": "Rogue",
+  "level": 1,
+  "abilityScores": {
+    "strength": 10,
+    "dexterity": 15,
+    "constitution": 11,
+    "intelligence": 13,
+    "wisdom": 12,
+    "charisma": 15
+  },
+  "hitPoints": {
+    "max": 8,
+    "current": 8
+  },
+  "proficiencies": {
+    "skills": [
+      "deception",
+      "insight",
+      "investigation",
+      "persuasion",
+      "sleightOfHand",
+      "stealth"
+    ],
+    "savingThrows": [
+      "dexterity",
+      "intelligence"
+    ],
+    "armor": [
+      "lightArmor"
+    ],
+    "weapons": [
+      "handCrossbow",
+      "longsword",
+      "rapier",
+      "shortsword",
+      "simpleWeapons"
+    ],
+    "tools": [
+      "diceSet",
+      "disguiseKit",
+      "thievesTools"
+    ]
+  },
+  "languages": [
+    "common",
+    "infernal",
+    "thievesCant"
+  ],
+  "spells": {
+    "0": ["thaumaturgy", "prestidigitation"],
+    "1": ["magic missile"]
+  },
+  "spellSlots": {
+    "1": {
+      "total": 3,
+      "used": 0
+    },
+    "2": {
+      "total": 1,
+      "used": 0
+    }
+  },
+  "equipment": [
+    "Arrows",
+    "Clotes, Common",
+    "Crowbar",
+    "Dagger",
+    "Dagger",
+    "Leather",
+    "Shortbow",
+    "Shortsword",
+    "Thieves' Tools"
+  ]
+}
