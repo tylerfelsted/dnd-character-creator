@@ -5,7 +5,6 @@ const { getDatabaseUri } = require("./config");
 
 let db = new MongoClient(getDatabaseUri());
 
-
 try {
   db.connect();
 } catch(err) {
