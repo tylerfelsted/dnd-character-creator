@@ -4,14 +4,14 @@
 
 require("dotenv").config();
 require("colors");
+const { DB_URI, KEY }
 
-const SECRET_KEY = process.env.SECRET_KEY || "secret-dev";
+const SECRET_KEY = process.env.SECRET_KEY || KEY;
 
 const PORT = +process.env.PORT || 3001;
 
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
-  const DB_URI = 'mongodb+srv://dbUser:8zihRMHFAqis89y4@cluster0.cikk1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
   return process.env.DATABASE_URL || DB_URI;
 }
 
@@ -22,7 +22,7 @@ console.log("Config:".green);
 console.log("SECRET_KEY:".yellow, SECRET_KEY);
 console.log("PORT:".yellow, PORT.toString());
 console.log("BCRYPT_WORK_FACTOR".yellow, BCRYPT_WORK_FACTOR);
-console.log("Database:".yellow, getDatabaseUri());
+// console.log("Database:".yellow, getDatabaseUri());
 console.log("---");
 
 module.exports = {
