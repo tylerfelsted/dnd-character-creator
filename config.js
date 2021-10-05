@@ -4,7 +4,7 @@
 
 require("dotenv").config();
 require("colors");
-const { DB_URI, KEY }
+const { DB_URI, KEY } = require('./secret.js')
 
 const SECRET_KEY = process.env.SECRET_KEY || KEY;
 
@@ -22,7 +22,7 @@ console.log("Config:".green);
 console.log("SECRET_KEY:".yellow, SECRET_KEY);
 console.log("PORT:".yellow, PORT.toString());
 console.log("BCRYPT_WORK_FACTOR".yellow, BCRYPT_WORK_FACTOR);
-// console.log("Database:".yellow, getDatabaseUri());
+console.log("Database:".yellow, getDatabaseUri());
 console.log("---");
 
 module.exports = {
