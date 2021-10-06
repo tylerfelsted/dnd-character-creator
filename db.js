@@ -3,12 +3,12 @@
 const { MongoClient } = require("mongodb");
 const { getDatabaseUri } = require("./config");
 
-let db = new MongoClient(getDatabaseUri());
+let client = new MongoClient(getDatabaseUri());
 
 try {
-  db.connect();
+  client.connect();
 } catch(err) {
   console.error(err);
 }
 
-module.exports = db;
+module.exports = client;

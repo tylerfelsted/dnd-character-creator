@@ -1,6 +1,6 @@
 "use strict";
 
-const db = require('../db');
+const client = require('../db');
 const bcrypt = require('bcrypt');
 const { BCRYPT_WORK_FACTOR } = require('../config');
 const { v4: uuidv4 } = require('uuid');
@@ -11,20 +11,20 @@ class User {
 
   static async register(newUser) {
     const { username, password } = newUser;
-    const duplicateCheck = await db.db("characterCreator").collection("users").findOne({username: username});
+    const duplicateCheck = await client.db("characterCreator").collection("users").findOne({username: username});
     if(duplicateCheck) {
       throw new BadRequestError("Username is already taken");
     }
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
     newUser.password = hashedPassword;
     newUser._id = uuidv4();
-    const result = await db.db("characterCreator").collection("users").insertOne(newUser);
+    const result = await client.db("characterCreator").collection("users").insertOne(newUser);
 
     return result;
   }
 
   static async login(username, password) {
-    const user = await db.db("characterCreator").collection("users").findOne({username: username});
+    const user = await client.db("characterCreator").collection("users").findOne({username: username});
     if(user && await bcrypt.compare(password, user.password)) {
 
       delete user.password;
