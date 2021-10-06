@@ -6,8 +6,12 @@ const User = require('../models/user');
 
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = require('../config');
+const characterRoutes = require('./characters');
+
 
 const router = new express.Router();
+
+router.use('/:userId/characters', characterRoutes);
 
 router.post("/register", async function(req, res, next) {
   try {

@@ -21,7 +21,6 @@ function authenticateJWT(req, res, next) {
     if (authHeader) {
       const token = authHeader.replace(/^[Bb]earer /, "").trim();
       res.locals.user = jwt.verify(token, SECRET_KEY);
-      console.log(res.locals.user);
     }
     return next();
   } catch (err) {
@@ -43,7 +42,17 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
+function ensureCorrectUserLoggedIn(req, res, next) {
+  try {
+    if (res.locals.user._id !== req.params.userId) throw new UnauthorizedError();
+    return next();
+  } catch(err) {
+    return next(err);
+  }
+}
+
 module.exports = {
   authenticateJWT,
-  ensureLoggedIn
+  ensureLoggedIn,
+  ensureCorrectUserLoggedIn
 };
