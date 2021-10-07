@@ -42,6 +42,7 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
+//Ensures that the user who owns the information requested is the user who is logged in.
 function ensureCorrectUserLoggedIn(req, res, next) {
   try {
     if (res.locals.user._id !== req.params.userId) throw new UnauthorizedError();

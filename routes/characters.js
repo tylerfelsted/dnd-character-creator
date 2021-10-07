@@ -7,6 +7,9 @@ const Character = require('../models/character');
 
 const router = new express.Router({mergeParams: true});
 
+
+//Gets all characters belonging to one user
+//Requires that user be logged in
 router.get('/', ensureCorrectUserLoggedIn, async function(req, res, next) {
   try {
     const characters = await Character.findAll(res.locals.user._id);
@@ -16,6 +19,8 @@ router.get('/', ensureCorrectUserLoggedIn, async function(req, res, next) {
   }
 });
 
+//Gets a specific character
+//Requires that user be logged in
 router.get('/:characterId', ensureCorrectUserLoggedIn, async function(req, res, next) {
   try {
     const characterId = req.params.characterId;
@@ -26,6 +31,7 @@ router.get('/:characterId', ensureCorrectUserLoggedIn, async function(req, res, 
   }
 });
 
+//Creates a new character
 router.post('/', ensureCorrectUserLoggedIn, async function(req, res, next) {
   try {
     const character = await Character.create(res.locals.user._id, req.body);
@@ -35,10 +41,11 @@ router.post('/', ensureCorrectUserLoggedIn, async function(req, res, next) {
   }
 });
 
+//Updates an existing character
 router.patch('/:characterId', ensureCorrectUserLoggedIn, async function(req, res, next) {
   try {
     const updatedCharacter = req.body;
-    const characterId = +req.params.characterId;
+    const characterId = req.params.characterId;
     const result = await Character.update(characterId, updatedCharacter);
     return res.status(200).json({result});
   } catch(err) {
@@ -46,6 +53,7 @@ router.patch('/:characterId', ensureCorrectUserLoggedIn, async function(req, res
   }
 });
 
+//Deletes an existing character
 router.delete('/:characterId', ensureCorrectUserLoggedIn, async function(req, res, next) {
   try {
     const characterId = req.params.characterId;

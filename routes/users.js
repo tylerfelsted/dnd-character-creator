@@ -13,6 +13,8 @@ const router = new express.Router();
 
 router.use('/:userId/characters', characterRoutes);
 
+//Registers a new user
+//Returns a web token
 router.post("/register", async function(req, res, next) {
   try {
     const result = await User.register(req.body);
@@ -23,6 +25,8 @@ router.post("/register", async function(req, res, next) {
   }
 });
 
+//Logs in an existing user
+//Returns a web token
 router.post("/login", async function(req, res, next) {
   try {
     const { username, password } = req.body;

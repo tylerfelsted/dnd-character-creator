@@ -9,6 +9,8 @@ const { BadRequestError, UnauthorizedError } = require('../expressError');
 
 class User {
 
+  //Registers a new user
+  //Assigns them a unique _id
   static async register(newUser) {
     const { username, password } = newUser;
     const duplicateCheck = await client.db("characterCreator").collection("users").findOne({username: username});
@@ -23,6 +25,7 @@ class User {
     return result;
   }
 
+  //Checks the username and password against users in the database to authenticate the user
   static async login(username, password) {
     const user = await client.db("characterCreator").collection("users").findOne({username: username});
     if(user && await bcrypt.compare(password, user.password)) {
